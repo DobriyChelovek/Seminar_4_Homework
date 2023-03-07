@@ -1,4 +1,4 @@
-﻿/* Задача 25
+﻿/*Задача 25
 Напишите метод, который принимает на вход два числа (A и B) и возводит
 число A в натуральную степень B.Math.Pow использовать нельзя
  3, 5 -> 243 (3⁵)
@@ -38,24 +38,73 @@ System.Console.WriteLine($"Ррешение для числа {number} в сте
 число и выдаёт сумму цифр в числе.
 452 -> 11; 82 -> 10; 9012 -> 12
 
-*/
 
-string GetNumber()
+
+int GetNumber(string message)
 {
-    System.Console.WriteLine("Введите число");
+    System.Console.WriteLine(message);
     string? a = Console.ReadLine();
-    return a;
+    int b = int.Parse(a);
+    return b;
 }
-string number = GetNumber();
+int number = GetNumber("Введите число ");
 
-char ToArr(string number)
+int Sum(int number)
 {
-    char[] Array = number.ToCharArray();
-    for (int i = 1; i <= Array.Length; i++)
+    int result = 0;
+    while (number >0)
     {
-        Console.Write($"{i}, ");
+        result = result + number % 10;
+        number = number / 10;
     }
-    return;
+    return result;
 }
-ToArr(number);
-System.Console.WriteLine($"Введенное число = {number}");
+System.Console.WriteLine($"Введенная цифра = {number}, сумма всех чисел в цифре ");
+System.Console.WriteLine($"равна {Sum(number)}");
+
+
+
+                        Задача 29: Напишите метод, который задаёт
+массив из N элементов и выводит их на экран.
+1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
+6, 1, 33 -> [6, 1, 33]
+
+
+int Prompt(string message)// Ввод числа с экрана
+{
+    System.Console.WriteLine(message);// Приглашение ко вводу
+    string? a = Console.ReadLine();
+    int b = int.Parse(a);//приводим к числу
+    return b;// возврат результата
+}
+
+// метод для получения случайных элементов массива
+int[] GenerateArray(int Length, int minValue, int maxValue)
+{
+    int[] array = new int[Length];// объявляем массив
+    Random random = new Random();// создаем переменную, которая будет заполняться псевдослучайныйм числом
+    for (int i = 0; i < Length; i++)
+    {
+        array[i] = random.Next(minValue, maxValue + 1);// заполняем 
+                                                       //случайными цифрами в диапазоне min-> max
+    }
+    return array;
+
+}
+
+void PrintArray(int[] array)
+{
+    Console.Write("{");
+    for (int i = 0; i < array.Length - 1; i++)
+    {
+        System.Console.Write($"{array[i]}, ");// вывод значения массива
+    }
+    System.Console.Write($"{array[array.Length - 1]}");// вывод значения массива
+    System.Console.WriteLine(("}"));
+}
+int length = Prompt("Длина массива: ");
+int min = Prompt("Начальное значение, для диапазона случайного числа: ");
+int max = Prompt("Конечное значение, для диапазона случайного числа: ");
+int[] array = GenerateArray(length, min, max); // заполнение массива случайными числами
+PrintArray(array);// вывод массива
+*/
